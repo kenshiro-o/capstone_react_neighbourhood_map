@@ -1,3 +1,12 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,9 +15,109 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-size: 1.2em;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+#app{
+  display: flex;
+  flex-direction: row;
+}
+
+.map-container{
+  height: 100vh;
+  width: 80%;
+}
+
+.search-list-container{
+  height: 100vh;
+  width: 20%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.search-container{
+  width: 100%;
+  margin-top: 30px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar{
+  width: 90%;
+  height: 3em;
+}
+
+.list-container{
+  margin: 20px 0;
+}
+
+
+.places-list{
+
+}
+
+.place-list-item{
+  list-style-type: none;
+  padding: 10px 20px;
+
+}
+
+.place-list-item:hover{
+  /* background: #87cefa; */
+  background: #8470ff;
+  cursor: pointer;
+}
+
+.place-selected{
+  background: #20b2aa;
+}
+
+
+/* InfoWindow related styles */
+
+.place-title{
+  margin: 10px 0;
+}
+
+.place-content-container{
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.place-summary{
+  width: 80%;
+  padding: 5px 10px 0 0;
+
+  font-size: 1.3em;
+  line-height: 1.2em;
+}
+
+.place-summary p{
+  margin-bottom: 15px;
+}
+
+.place-summary p:last-of-type{
+  margin-bottom: 0;
+}
+
+.place-image-container{
+  width: 20%;
+
+  /* max-height: 150px; */
+}
+
+.place-image{
+  max-height: 200px;
+}
+
+
