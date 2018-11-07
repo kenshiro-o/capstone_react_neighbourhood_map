@@ -1,11 +1,10 @@
 import * as ListActions from '../actions';
 
-const placeSelectedReducer = (state, action) => {
-    console.log("*** PLACE SELECTED REDUCER ***");
+const placeSelectedReducer = (state = null, action) => {
     if (action.type === ListActions.PLACE_SELECTED) {
         return action.placeSelected;
     }
-    return null;
+    return state;
 }
 
 export default placeSelectedReducer;

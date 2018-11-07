@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 class ListContainer extends Component {
     handlePlaceClicked(e, name) {
-        console.log("Place has been clicked " + name);
         let placeSelected = this.props.places.filter(p => p.name === name)[0];
         if (e.target.classList.contains("place-selected")) {
             // Toggling place selected
@@ -16,16 +15,6 @@ class ListContainer extends Component {
             type: ListActions.PLACE_SELECTED,
             placeSelected: placeSelected
         });
-
-        // const api = new WikipediaAPI("en");
-        // api.search("Eiffel Tower")
-        //     .then(d => {
-        //         // TODO iterate through the results and fetch the summary of the most likely one
-        //     })
-
-        // api.getPageSummary("Eiffel Tower").then(d => {
-        //     console.log(`Summary = ${JSON.stringify(d)}`);
-        // });
     }
 
 

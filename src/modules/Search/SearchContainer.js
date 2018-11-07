@@ -17,7 +17,6 @@ class SearchContainer extends Component {
 
     onQueryChange(e) {
         const q = e.target.value;
-        console.log(`Query has change ${q}`);
 
         const { defaultPlaces } = this.props;
         let matchedPlaces = this.props.defaultPlaces;
@@ -26,7 +25,6 @@ class SearchContainer extends Component {
             matchedPlaces = defaultPlaces.filter((p) => match.test(p.name))
         }
 
-        console.log(`Matched Places: ${JSON.stringify(matchedPlaces)}`);
         this.setState({
             query: q,
             matchedPlaces: matchedPlaces

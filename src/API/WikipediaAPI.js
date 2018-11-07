@@ -43,7 +43,6 @@ class WikipediaAPI {
     }
 
     getPageSummary(title) {
-        //  https://en.wikipedia.org/api/rest_v1/page/summary/Notre-Dame de Paris
         const urlStr = `${this.wikiURLPrefix}/api/rest_v1/page/summary/${title}`;
         const url = new URL(urlStr);
         return fetch(url)

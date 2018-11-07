@@ -16,16 +16,13 @@ class PlaceContainer extends Component {
         // Rebuild the marker in case we are remounting the component
         // Clearly this is not the most efficient method (could keep toggled state)
         // But it will do for this occasion as we are not too concerned with performance
-        console.log(`Component just mounted for place ${this.props.name}`);
         if (this.props.map) {
-            console.log(`ComponentDidMount and creating marker for place: ${this.props.name}`);
             this.createMarker();
             this.buildPlaceInfo();
         }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(`componentDidUpdate for ${this.props.name} with map: ${this.props.map} and store=${store.getState().map}`);
         // Do not re-create the marker
         if (this.props.map !== prevProps.map && !this.state.marker) {
             this.createMarker();
@@ -40,7 +37,6 @@ class PlaceContainer extends Component {
             }
         }
 
-        console.log(`Checking after component did update for place ${this.props.name}`);
         const { placeSelected, name } = this.props;
         if (this.state.marker && prevProps.placeSelected !== placeSelected) {
             // Only animate the marker in case our place has been selected
@@ -99,7 +95,6 @@ class PlaceContainer extends Component {
                 }
                 return wApi.getPageSummary(results[0].title);
             }).then(summary => {
-                console.log(`Summary is ${JSON.stringify(summary)}`);
                 const iw = new window.google.maps.InfoWindow({
                     content: placeInfo
                 });
@@ -156,10 +151,8 @@ class PlaceContainer extends Component {
     componentWillUnmount() {
         // As the component will be phased out, we would like it not to display on the map anymore
         if (!this.state.marker) {
-            console.log(`No marker for place ${this.props.name}`);
             return;
         }
-        console.log(`Unsetting map for this place: ${this.props.name}`);
         this.state.marker.setMap(null);
     }
 

@@ -110,3 +110,53 @@ information should not be available outside a given component and its children, 
 For instance, controlled components like `PlaceContainer` maintain information about their marker, info window, and info window content.
 This information should not be globally available.
 
+
+
+## Layout
+
+
+We employ basic css; no framework like SASS or LESS are used in this project. The
+reason why is because I simply felt the size of the project was too small to warrant
+the overhead of using a framework.
+
+One thing I realised though is that the styles are _directly inserted_ into the html
+document by _create-react-app_, which is not ideal. In the future, I'd like to
+tackle this issue so that the css styles are imported in the HTML. I can easily do
+this to be honest but I need to find a way to prevent _create-react-app_ from
+inlining the css into the HTML document.
+
+As we strive to create a responsive, we are using media queries in some places to
+accommodate for different screen sizes, such as in the following case for the
+InfoWindow when selecting a place of interest on the list menu or clicking on one:
+
+```
+@media screen and (max-width: 500px){
+  .place-info-container{
+    width: 350px;
+    max-height: 300px;
+  }
+  ...
+  ...
+}
+```
+
+
+Moreover, we use a sliding menu on the left to enable the map to occupy the whole
+screen when the user deems the former unnecessary. We simply use a basic animation to
+transition _slide-in_ or _slide-out_ the menu depending on the user's itent. A css
+property is toggled to determining which one of the sliding actions to undertake.
+
+
+## Future Improvements
+
+There are many potential improvements that could be made to this project. Some of
+the following come to my mind:
+* modify _create-react-app_ or simply writing own webpack scripts to have more control over build process
+* improve performance on the general rending and re-use of map components like markers
+* better styling for search bar: it looks very plain right now
+* have more control over service worker logic
+* use more functional componenents
+
+
+Overall, this was a fun project where I learned a great deal about React, Redux and the general lifecycle events of such libraries.
+
