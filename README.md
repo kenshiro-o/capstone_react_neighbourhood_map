@@ -3,6 +3,20 @@
 This is the capstone project for the Udacity front-end nanodegree. In this project we have created a neighbourhood map of Paris using
 predominantly React and Google Maps. We have also employed some important libraries to help us build this application, like Redux.
 
+## Installation
+
+Install dependencies with the command:
+
+```
+npm install
+```
+
+Then simply run the application with the command:
+
+```
+npm start
+```
+
 ## Code Structure
 
 ```
