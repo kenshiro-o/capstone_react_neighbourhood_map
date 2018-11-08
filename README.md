@@ -17,6 +17,17 @@ Then simply run the application with the command:
 npm start
 ```
 
+To enable service workers change line 25 of `serviceWorker.js` from:
+```
+if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+```
+
+to
+
+```
+if (process.env.NODE_ENV === 'development' && 'serviceWorker' in navigator) {
+```
+
 ## Code Structure
 
 ```

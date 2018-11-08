@@ -10,7 +10,7 @@ import SearchContainer from './modules/Search/SearchContainer';
 
 class App extends Component {
   /*
-   Will be storing the coordinates of imporant landscapes in an array
+   Will be storing the coordinates of important landscapes in an array
 
    Eiffer Tower: 48.8584° N, 2.2945° E
    Notre Dame: 48.8530° N, 2.3499° E
@@ -40,6 +40,11 @@ class App extends Component {
 
   }
 
+  onMapError(e) {
+    console.log(`Map load error: ${e}`);
+    alert(`Map load error - please try reloading website`);
+  }
+
 
   onSideMenuClicked(e) {
     const sMenu = document.getElementsByClassName("side-menu")[0];
@@ -54,7 +59,7 @@ class App extends Component {
   render() {
     return (
       <div id="app">
-        <div className="side-menu">
+        <nav className="side-menu">
           <div className="side-menu-slider-container">
             <span className="side-menu-slider" onClick={e => this.onSideMenuClicked(e)}>
               {/* <img src="/img/left_arrow_24px.svg" alt="left arrow button to display menu"></img> */}
@@ -62,7 +67,7 @@ class App extends Component {
 
           </div>
           <SearchContainer defaultPlaces={this.props.places}></SearchContainer>
-        </div>
+        </nav>
 
         <Map
           id="myMap"
@@ -74,6 +79,7 @@ class App extends Component {
           }}
 
           onMapLoad={this.onMapLoad}
+          onMapError={this.onMapError}
         />
       </div>
 

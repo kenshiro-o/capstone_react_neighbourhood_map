@@ -39,7 +39,10 @@ class WikipediaAPI {
                     }
                     resolve(data["query"]["search"]);
                 });
-            });
+            }).catch(e => {
+                console.log(`Error searching data from Wikipedia ${e}`);
+                alert("Error searching data from Wikipedia");
+            })
     }
 
     getPageSummary(title) {
@@ -48,6 +51,9 @@ class WikipediaAPI {
         return fetch(url)
             .then(response => {
                 return response.json();
+            }).catch(e => {
+                console.log(`Error obtaining page summary data from Wikipedia ${e}`);
+                alert("Error obtaining page summary data from Wikipedia");
             })
     }
 };

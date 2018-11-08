@@ -110,7 +110,7 @@ code {
 
 }
 
-.place-list-item:hover{
+.place-list-item:hover, .place-list-item:focus{
   /* background: #87cefa; */
   background: #8470ff;
   cursor: pointer;

@@ -21,14 +21,14 @@ class ListContainer extends Component {
     render() {
         return (
             <ol className="places-list">
-                {this.props.places.map(p => {
+                {this.props.places.map((p, i) => {
                     let css = "place-list-item";
                     const { placeSelected } = this.props;
                     if (placeSelected && placeSelected.name === p.name) {
                         css += " place-selected";
                     }
                     return (
-                        <li className={css} key={p.name} onClick={e => this.handlePlaceClicked(e, p.name)}>{p.name}</li>
+                        <li tabIndex="0" className={css} key={p.name} onClick={e => this.handlePlaceClicked(e, p.name)}>{p.name}</li>
                     );
                 })}
 
