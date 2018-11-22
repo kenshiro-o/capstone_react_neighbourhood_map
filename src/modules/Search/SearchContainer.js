@@ -35,10 +35,12 @@ class SearchContainer extends Component {
     render() {
         return (
             <div className="search-list-container">
-                <div className="search-container">
+                <div className="search-container" role="search">
                     <input className="search-bar" type="text" placeholder="Type place to search"
                         value={this.state.query}
                         onChange={e => this.onQueryChange(e)}
+                        aria-controls="places-list"
+                        aria-label="Type place to search"
                     />
                 </div>
 

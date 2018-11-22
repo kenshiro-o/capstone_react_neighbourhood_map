@@ -84,8 +84,6 @@ class PlaceContainer extends Component {
     createInfoWindow() {
         const wApi = new WikipediaAPI("en");
         const setState = this.setState.bind(this);
-        const buildContent = this.buildInfoWindowContent.bind(this);
-        const showInfoWindow = this.showInfoWindow.bind(this);
         const { name } = this.props;
         const { marker, placeInfo } = this.state;
         wApi.search(this.props.name)
@@ -111,10 +109,12 @@ class PlaceContainer extends Component {
     }
 
     buildInfoWindowContent(summary) {
-        let content = `<div class="place-info-container">
-            <h2 class="place-title">${summary.title}</h2>
+        let content = `
+        <article class="place-info-container" role="dialog"
+                 aria-labelledby="place-title" aria-describedby="place-summary">
+            <h2 class="place-title" id="place-title">${summary.title}</h2>
             <div class="place-content-container">
-                <div class="place-summary">
+                <div id="place-summary" class="place-summary">
 
                 <p>${summary.extract}</p>
 
@@ -128,7 +128,7 @@ class PlaceContainer extends Component {
                     <img class="place-image" src=${summary.thumbnail.source} alt="photo of ${summary.title}" >
                 </div>
             </div>
-        </div>`;
+        </article>`;
         return content;
     }
 

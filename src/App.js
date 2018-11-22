@@ -53,15 +53,23 @@ class App extends Component {
     // slide-right
     const slider = document.getElementsByClassName("side-menu-slider")[0];
     slider.classList.toggle("slide-right");
+
+    const sMenuVisible = sMenu.classList.contains("visible");
+    if (sMenuVisible) {
+      slider.setAttribute("aria-checked", "true");
+    } else {
+      slider.setAttribute("aria-checked", "false");
+    }
   }
 
 
   render() {
     return (
       <div id="app">
-        <nav className="side-menu">
+        <nav className="side-menu" role="navigation" aria-label="Place Selector Navigation">
           <div className="side-menu-slider-container">
-            <span className="side-menu-slider" onClick={e => this.onSideMenuClicked(e)}>
+            <span className="side-menu-slider" role="switch" aria-checked="false"
+              onClick={e => this.onSideMenuClicked(e)} >
               {/* <img src="/img/left_arrow_24px.svg" alt="left arrow button to display menu"></img> */}
             </span>
 

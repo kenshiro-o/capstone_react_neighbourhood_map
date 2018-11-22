@@ -20,7 +20,7 @@ class ListContainer extends Component {
 
     render() {
         return (
-            <ol className="places-list">
+            <ol className="places-list" id="places-list">
                 {this.props.places.map((p, i) => {
                     let css = "place-list-item";
                     const { placeSelected } = this.props;

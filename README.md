@@ -17,15 +17,15 @@ Then simply run the application with the command:
 npm start
 ```
 
-To enable service workers change line 25 of `serviceWorker.js` from:
-```
-if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-```
+## Testing The ServiceWorker
 
-to
-
+To build a production release and test the service worker, execute the following:
 ```
-if (process.env.NODE_ENV === 'development' && 'serviceWorker' in navigator) {
+npm run build
+```
+This builds your application and readies it for a production release. You can then test your service worker by running the production application as thus:
+```
+serve -s build
 ```
 
 ## Code Structure
@@ -96,6 +96,29 @@ library via the following mechanism:
 * append a `<script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&v=3">` to the body of the DOM
 * wait for the script to be fully loaded by subscribing to the `load` event
 * Upon `load` event triggered, execute a function that creates the map and dispatch a Redux event with the map to force a render on all subscribing component
+
+Moreover, we attempt to gracefully handle the cases where we are unable to load the Map. Currently, we use a [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
+to track changes to the the `myMap` element. When Google Maps fails to load (e.g. incorrect API key), the library will insert a div with class `gm-err-container`.
+If the MutationObserver notifies of any such element added, we therefore proceed to perform a little cleanup and display an error message on the screeen as opposed
+to Google's error message and layout. The exerpt below shows how we strive to accoplish this task:
+
+```
+const handleErrorFn = this.onScriptError.bind(this);
+const callback = function (mutationsList) {
+    for (var mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            for (const an of mutation.addedNodes) {
+                if (an.classList && an.classList.contains("gm-err-container")) {
+                    handleErrorFn();
+                }
+            }
+        }
+    }
+};
+const mu = new MutationObserver(callback);
+const config = { attributes: false, childList: true, subtree: true };
+mu.observe(mapElement, config);
+```
 
 ### Why Redux
 
