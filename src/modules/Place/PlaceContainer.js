@@ -136,9 +136,12 @@ class PlaceContainer extends Component {
         const wApi = new WikipediaAPI("en");
         const buildContent = this.buildInfoWindowContent.bind(this);
         const setState = this.setState.bind(this);
-        wApi.search(this.props.name)
+        const { name } = this.props;
+        wApi.search(name)
             .then(results => {
-                if (!results && results.length === 0) {
+                if (!results || results.length === 0) {
+                    // No search results for the entry... We should try to alert user
+                    alert(`No Wikipedia search results for ${name}`);
                     return;
                 }
                 return wApi.getPageSummary(results[0].title);
